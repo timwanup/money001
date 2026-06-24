@@ -57,10 +57,11 @@ td{padding:7px 6px;border-bottom:.5px solid #e5e5ea;vertical-align:middle}
 .po .pt{font-weight:600;margin-top:4px;padding-top:4px;border-top:.5px solid #ddd;color:#e65100}
 </style></head>
 <body>
-<div class="nv"><h1>&#x1F4B0; &#x6708;&#x5DE5;&#x8D44;&#x8BA1;&#x7B97;</h1><p>&#x7B80;&#x7EA6; &middot; &#x9AD8;&#x6548; &middot; &#x6E05;&#x6670;</p></div>
+<div class="nv"><h1>💰 财神来了</h1></div>
+
 <div class="ct">
 <div class="sc"><div class="cd"><div class="rw"><label>&#x1F4C5; &#x65E5;&#x671F;</label><input type="date" id="od"></div></div></div>
-<div class="tb"><button class="ac" data-t="o">&#x1F4DD; &#x5F55;&#x5165;</button><button data-t="d">&#x1F4CA; &#x5F53;&#x65E5;</button><button data-t="m">&#x1F4C8; &#x5F53;&#x6708;</button><button data-t="c">&#x1F50D; &#x590D;&#x68C0;</button><button data-t="e">&#x1F4E4; &#x5BFC;&#x51FA;</button></div>
+<div class="tb"><button class="ac" data-t="o">&#x1F4DD; &#x5F55;&#x5165;</button><button data-t="d">&#x1F4CA; &#x5F53;&#x65E5;</button><button data-t="m">&#x1F4C8; &#x5F53;&#x6708;</button><button data-t="c">&#x1F50D; &#x590D;&#x68C0;</button><button data-t="e">📤 导出</button></div>
 <div class="tc ac" id="t-o">
 <div class="cd"><div class="hd">&#x1F4E6; &#x65B0;&#x5EFA;&#x8BA2;&#x5355;</div><div id="itemForm"></div>
 <div class="pv" id="pv" style="display:none;margin-top:8px"><div class="lb" style="display:flex;justify-content:space-between;font-size:12px"><span>&#x1F4B5; &#x603B;&#x989D;:<b id="pvT" style="color:var(--l)">0</b></span><span>&#x1F3C6; &#x63D0;&#x6210;:<b id="pvC" style="color:var(--l)">0</b></span></div><div class="am" id="pvP" style="font-size:22px;color:#e65100;line-height:1.5">0 &#x5206;</div><div class="lb" id="pvD" style="font-size:11px;color:#999;margin-top:12px;display:block;clear:both"></div></div>
@@ -71,8 +72,12 @@ td{padding:7px 6px;border-bottom:.5px solid #e5e5ea;vertical-align:middle}
 <div class="cd"><div class="hd">&#x1F4CB; &#x5F53;&#x65E5;&#x5168;&#x90E8;&#x8BA2;&#x5355;</div><div id="dl" class="tw"></div></div></div>
 <div class="tc" id="t-m"><div class="cd"><div class="hd">&#x1F4C8; &#x5F53;&#x6708;&#x6570;&#x636E;&#x6C47;&#x603B;</div><div class="sg" id="ms"></div></div>
 <div class="cd"><div class="hd">&#x1F4C6; &#x6BCF;&#x65E5;&#x6982;&#x89C8;</div><div id="md" class="tw"></div></div></div>
-<div class="tc" id="t-c"><div class="cd"><div class="hd">&#x1F50D; &#x590D;&#x68C0;&#x7BA1;&#x7406;</div><div id="rcList"></div></div></div><div class="tc" id="t-e"><div class="cd"><div class="hd">📤 数据导出</div><div style="padding:12px 0;display:flex;flex-direction:column;gap:12px"><button class="btn bp" onclick="expJSON()" style="width:100%">📦 导出全部数据 (JSON)</button><button class="btn bo" onclick="expCSV()" style="width:100%">📊 导出当月报表 (CSV)</button><button class="btn bo" onclick="expDay()" style="width:100%">📋 导出当日明细 (CSV)</button></div><div style="font-size:12px;color:var(--s);margin-top:8px;padding:8px;background:#f8f9fa;border-radius:8px">💡 JSON：完整数据备份；CSV：可用 Excel 打开</div></div></div>
-</div>
+<div class="tc" id="t-c"><div class="cd"><div class="hd">&#x1F50D; &#x590D;&#x68C0;&#x7BA1;&#x7406;</div><div id="rcList"></div></div></div>
+<div class="tc" id="t-e"><div class="cd"><div class="hd">&#x1F4E4; &#x6570;&#x636E;&#x5BFC;&#x51FA;</div><div style="display:flex;flex-direction:column;gap:10px;padding:4px 0">
+<button class="btn bp" onclick="expJSON()" style="width:100%">&#x1F4E6; &#x5BFC;&#x51FA; JSON</button>
+<button class="btn bp" onclick="expCSV()" style="width:100%">&#x1F4CA; &#x5BFC;&#x51FA; CSV</button>
+<button class="btn bp" onclick="expDay()" style="width:100%">&#x1F4CB; &#x5BFC;&#x51FA;&#x5F53;&#x65E5;&#x660E;&#x7EC6;</button>
+</div></div></div>
 <!-- &#x79EF;&#x5206;&#x8BE6;&#x60C5;&#x5F39;&#x7A97; -->
 <div class="mo" id="ptsMo" style="display:none"><div class="mo-b" onclick="cpMo()"></div><div class="mo-c"><div class="mo-h"><span>&#x2B50; &#x79EF;&#x5206;&#x6784;&#x6210;&#x8BE6;&#x60C5;</span><button class="mo-x" onclick="cpMo()">&#x2716;</button></div><div id="ptsDet"></div></div></div>
 <script>
@@ -82,7 +87,7 @@ function lt(){try{var s=localStorage.getItem(TK);if(s)return JSON.parse(s)}catch
 function st(t){localStorage.setItem(TK,JSON.stringify(t))}
 function lo(){try{var s=localStorage.getItem(OK);if(s){var d=JSON.parse(s);if(Array.isArray(d))return d}}catch(e){}return[]}
 function so(o){localStorage.setItem(OK,JSON.stringify(o))}
-function cc(a,ex,t){for(var i=0;i<t.length;i++){var v=t[i];if(a>=v.mi&&a<v.ma)return ex?v.e:v.n}return 0}
+function cc(a,ex,t){for(var i=0;i<t.length;i++){var v=t[i];if(a>=v.mi&&a<v.ma)return ex?v.e:v.n}var last=t[t.length-1];if(a>=last.mi)return ex?last.e:last.n;return 0}
 function pts(itm,fk){if(fk)return 0.2;var p=0.2;itm.forEach(function(it){var a=it.a;if(a>=20000)p+=1.5;else if(a>=10000)p+=1;else if(a>=5000)p+=0.5});var h=new Date().getHours();if((h>=9&&h<10)||(h>=20))p+=0.5;return +p.toFixed(2)}
 function ip(it){var a=it.a;if(a>=20000)return 1.5;if(a>=10000)return 1;if(a>=5000)return 0.5;return 0}
 function ir(o){return!o.fk&&(!o.rc||o.rs==='pass')}
@@ -116,7 +121,7 @@ o.it.forEach(function(it,j){var t=[];if(it.f)t.push('<span class="ch crd">&#x504
 h+='<tr style="background:#f8f9fa;font-weight:600"><td></td><td>&#x1F4B0; '+o.it.reduce(function(s,it){return s+it.a},0).toFixed(2)+'</td><td></td><td>'+o.com.toFixed(2)+'</td><td style="color:#e65100">'+o.pt+'&#x5206;</td></tr></tbody></table><div style="margin:4px 0;display:flex;gap:6px"><button class="ib" onclick="ed('+idx+')">&#x270F;&#xFE0F; &#x7F16;&#x8F91;</button><button class="ib" onclick="del('+idx+')" style="color:#ff3b30">&#x1F5D1;&#xFE0F; &#x5220;&#x9664;</button></div>'});
 c.innerHTML=h}
 function ed(i){tt('&#x270F;&#xFE0F; &#x8BF7;&#x5220;&#x9664;&#x540E;&#x91CD;&#x65B0;&#x6DFB;&#x52A0;')}
-function del(i){if(!confirm('&#x786E;&#x5B9A;&#x5220;&#x9664;&#x6B64;&#x8BA2;&#x5355;&#xFF1F;'))return;S.o.splice(i,1);so(S.o);rf();tt('&#x1F5D1;&#xFE0F; &#x5DF2;&#x5220;&#x9664;')}
+function del(i){if(!confirm('确定删除此订单？'))return;S.o.splice(i,1);so(S.o);rf();tt('🗑️ 已删除')}
 function rd(){var d=gd(),list=obd(d);var rlist=list.filter(ir),reclist=list.filter(ic),flist=list.filter(function(o){return o.fk});
 var t=rlist.reduce(function(s,o){return s+o.it.reduce(function(t,it){return t+it.a},0)},0);var c=rlist.reduce(function(s,o){return s+o.com},0);var p=rlist.reduce(function(s,o){return s+o.pt},0)+reclist.reduce(function(s,o){return s+o.pt},0)+flist.reduce(function(s,o){return s+o.pt},0);var rt=reclist.reduce(function(s,o){return s+o.it.reduce(function(t,it){return t+it.a},0)},0);var e=rlist.reduce(function(s,o){return s+o.it.filter(function(it){return it.e}).length},0);
 $('ds').innerHTML='<div class="si sf"><div class="nm">'+t.toFixed(2)+'</div><div class="bl">&#x1F4B5; &#x8BA2;&#x5355;&#x603B;&#x989D;</div></div><div class="si"><div class="nm">'+c.toFixed(2)+'</div><div class="bl">&#x1F3C6; &#x603B;&#x63D0;&#x6210;</div></div><div class="si" onclick="spMo(\'d\')"><div class="nm" style="color:#e65100">'+p.toFixed(1)+'&#x5206;</div><div class="bl">&#x2B50; &#x603B;&#x79EF;&#x5206; ></div></div><div class="si" onclick="swT(\'c\')"><div class="nm" style="color:#e65100">'+rt.toFixed(2)+'</div><div class="bl">&#x1F50D; &#x590D;&#x68C0;&#x91D1;&#x989D;</div></div><div class="si"><div class="nm">'+rlist.length+'</div><div class="bl">&#x1F4E6; &#x8BA2;&#x5355;&#x6570;</div></div><div class="si"><div class="nm">'+e+'</div><div class="bl">&#x1F4B7; &#x589E;&#x5355;&#x6570;</div></div>';
@@ -140,10 +145,14 @@ list.forEach(function(o,i){var idx=S.o.indexOf(o);var s=o.rs==='pass'?'<span cla
 h+='<tr><td>'+o.d+'</td><td>'+o.it.reduce(function(s,it){return s+it.a},0).toFixed(2)+'</td><td>'+o.it.length+'&#x4EF6;</td><td>'+s+'</td><td><div style="display:flex;gap:4px">'+(o.rs==='pass'?'':'<button class="btn bp bs" onclick="rcA('+idx+',\'pass\')">&#x2705; &#x901A;&#x8FC7;</button>')+(o.rs==='fail'?'':'<button class="btn bo bs" onclick="rcA('+idx+',\'fail\')">&#x274C; &#x4E0D;&#x901A;&#x8FC7;</button>')+(o.rs?'<button class="btn bo bs" onclick="rcA('+idx+',null)">&#x1F504; &#x91CD;&#x7F6E;</button>':'')+'</div></td></tr>'});
 h+='</tbody></table>';c.innerHTML=h}
 function rcA(idx,s){S.o[idx].rs=s;so(S.o);rcR();rd();rm();tt(s==='pass'?'&#x2705; &#x5DF2;&#x901A;&#x8FC7':s==='fail'?'&#x274C; &#x5DF2;&#x6807;&#x8BB0;&#x672A;&#x901A;&#x8FC7;':'&#x1F504; &#x5DF2;&#x91CD;&#x7F6E;')}
-function rf(){rf()}
-var _t;function tt(m){var e=document.querySelector('.tt');if(e)e.remove();clearTimeout(_t);var el=document.createElement('div');el.className='tt';el.textContent=m;document.body.appendChild(el);_t=setTimeout(function(){el.remove()},2000)}
-function expJSON(){var d={o:S.o,t:S.t,ts:new Date().toISOString()};var b=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download='salary_data_'+td()+'.json';a.click();URL.revokeObjectURL(u);tt('✅ JSON 已导出')}function expCSV(){var n=new Date(),y=n.getFullYear(),m=n.getMonth()+1,list=obm(y,m);if(!list.length){tt('暂无当月数据');return}var r='日期,订单数,总金额,总提成,总积分\\n';var map={};list.forEach(function(o){if(!map[o.d])map[o.d]={cnt:0,a:0,c:0,pt:0};map[o.d].cnt+=1;map[o.d].a+=o.it.reduce(function(s,it){return s+it.a},0);map[o.d].c+=o.com;map[o.d].pt+=o.pt});Object.keys(map).sort().forEach(function(d){var dd=map[d];r+=d+','+dd.cnt+','+dd.a.toFixed(2)+','+dd.c.toFixed(2)+','+dd.pt.toFixed(1)+'\\n'});var b=new Blob(['\\uFEFF'+r],{type:'text/csv;charset=utf-8'});var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download='month_'+y+'-'+m+'.csv';a.click();URL.revokeObjectURL(u);tt('📊 CSV 已导出')}function expDay(){var d=gd(),list=obd(d);if(!list.length){tt('暂无当日数据');return}var r='订单,商品,金额,标记,提成,积分\\n';list.forEach(function(o,i){o.it.forEach(function(it,j){var t=it.e?'增单':(it.r?'复检':(it.f?'假货':'普通'));r+=(i+1)+','+(j+1)+','+it.a.toFixed(2)+','+t+','+(it.f?'-':cc(it.a,it.e,S.t).toFixed(2))+','+(it.f?'-':(o.pt||0).toFixed(1))+'\
-'});});var b=new Blob(['\\uFEFF'+r],{type:'text/csv;charset=utf-8'});var u=URL.createObjectURL(b);var a=document.createElement('a');a.href=u;a.download='daily_'+d+'.csv';a.click();URL.revokeObjectURL(u);tt('📋 CSV 已导出')}function rf(){try{rt()}catch(e){}try{rd()}catch(e){}try{rm()}catch(e){}}function swT(id){q('.tb button').forEach(function(x){x.classList.remove('ac')});q('.tc').forEach(function(x){x.classList.remove('ac')});q('.tb button').forEach(function(b){if(b.dataset.t===id)b.classList.add('ac')});var el=document.getElementById('t-'+id);if(el)el.classList.add('ac');if(id==='d')rd();if(id==='m')rm();if(id==='c')rcR();if(id==='e'){};if(id==='o')rt()}
+var _t;function tt(m){var e=document.querySelector('.tt');if(e)e.remove();clearTimeout(_t);var el=document.createElement('div');el.className='tt';el.innerHTML=m;document.body.appendChild(el);_t=setTimeout(function(){el.remove()},2000)}
+function expJSON(){var b=new Blob([JSON.stringify({orders:S.o,date:new Date().toISOString()},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='orders_'+td()+'.json';a.click();tt('📦 JSON 已导出')}
+function expCSV(){var rows=[['日期','商品数','总计','提成','积分','状态']];S.o.forEach(function(o){rows.push([o.d,o.it.length,o.it.reduce(function(s,it){return s+it.a},0).toFixed(2),o.com.toFixed(2),o.pt.toFixed(1),o.fk?'假货':(o.rs==='pass'?'通过':o.rs==='fail'?'未过':'正常')])});var csv=rows.map(function(r){return r.join(',')}).join('\n');var b=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='orders_'+td()+'.csv';a.click();tt('📊 CSV 已导出')}
+function expDay(){var d=gd(),list=obd(d);if(!list.length){tt('当日无数据');return}var rows=[['金额','提成','积分','标记']];list.forEach(function(o){o.it.forEach(function(it){rows.push([it.a.toFixed(2),cc(it.a,it.e,S.t).toFixed(2),ip(it).toFixed(1),it.f?'假货':(it.e?'增单':(it.r?'复检':'普通'))])})});var csv=rows.map(function(r){return r.join(',')}).join('\n');var b=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='daily_'+d+'.csv';a.click();tt('📋 当日明细已导出')}
+function expJSON(){var b=new Blob([JSON.stringify({orders:S.o,date:new Date().toISOString()},null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='orders_'+td()+'.json';a.click();tt('📦 JSON 已导出')}
+function expCSV(){var rows=[['日期','商品数','总计','提成','积分','状态']];S.o.forEach(function(o){rows.push([o.d,o.it.length,o.it.reduce(function(s,it){return s+it.a},0).toFixed(2),o.com.toFixed(2),o.pt.toFixed(1),o.fk?'假货':(o.rs==='pass'?'通过':o.rs==='fail'?'未过':'正常')])});var csv=rows.map(function(r){return r.join(',')}).join('\n');var b=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='orders_'+td()+'.csv';a.click();tt('📊 CSV 已导出')}
+function expDay(){var d=gd(),list=obd(d);if(!list.length){tt('当日无数据');return}var rows=[['金额','提成','积分','标记']];list.forEach(function(o){o.it.forEach(function(it){rows.push([it.a.toFixed(2),cc(it.a,it.e,S.t).toFixed(2),ip(it).toFixed(1),it.f?'假货':(it.e?'增单':(it.r?'复检':'普通'))])})});var csv=rows.map(function(r){return r.join(',')}).join('\n');var b=new Blob([csv],{type:'text/csv'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='daily_'+d+'.csv';a.click();tt('📋 当日明细已导出')}
+function rf(){try{rt()}catch(e){}try{rd()}catch(e){}try{rm()}catch(e){}}function rr(){var rb=$('rb');if(!rb)return;rb.innerHTML=S.t.map(function(t){return'<tr><td>'+t.l+'</td><td>'+t.n.toFixed(2)+'</td><td>'+t.e.toFixed(2)+'</td></tr>'}).join('');$('re').innerHTML=S.t.map(function(t,i){return'<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap"><span style="font-size:14px;min-width:90px">'+t.l+'</span><label style="font-size:12px">普通</label><input type="number" step="1" min="0" value="'+t.n+'" onchange="ut('+i+',\'n\',+this.value)" style="width:70px;padding:6px 8px;border:0;background:#f2f2f7;border-radius:8px;font-size:14px"><label style="font-size:12px">增单</label><input type="number" step="1" min="0" value="'+t.e+'" onchange="ut('+i+',\'e\',+this.value)" style="width:70px;padding:6px 8px;border:0;background:#f2f2f7;border-radius:8px;font-size:14px"></div>'}).join('')}function ut(i,t,v){if(t==='n')S.t[i].n=v;else S.t[i].e=v;st(S.t);rr();tt('已更新')}function swT(id){q('.tb button').forEach(function(x){x.classList.remove('ac')});q('.tc').forEach(function(x){x.classList.remove('ac')});q('.tb button').forEach(function(b){if(b.dataset.t===id)b.classList.add('ac')});var el=document.getElementById('t-'+id);if(el)el.classList.add('ac');if(id==='d')rd();if(id==='m')rm();if(id==='c')rcR();if(id==='e'){};if(id==='r')rr();if(id==='o')rt()}
 document.addEventListener('DOMContentLoaded',function(){
 $('od').value=td();$('addItemBtn').addEventListener('click',addItm);$('subBtn').addEventListener('click',sbO);$('od').addEventListener('change',function(){rf()});
 q('.tb button').forEach(function(b){b.addEventListener('click',function(){swT(b.dataset.t)})});if(S.o.length&&!S.o[0].it){try{S.o=S.o.map(function(o){if(!o.it&&o.amount!==undefined){var fk=!!o.isFake,rc=!!o.needRecheck,com=o.commission||cc(o.amount,o.isExtra,S.t),pt=o.points||0.2;return{d:o.date,it:[{a:o.amount,r:!!o.needRecheck,e:!!o.isExtra,f:!!o.isFake}],fk:fk,com:com,pt:pt,rc:rc,rs:o.recheckStatus||null,ts:o.ts||Date.now()}}return o})}catch(e){console.error('rm:',e)}so(S.o)}S.itm.push({a:0,r:false,e:false,f:false});ri();rf();
@@ -151,6 +160,32 @@ q('.tb button').forEach(function(b){b.addEventListener('click',function(){swT(b.
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
